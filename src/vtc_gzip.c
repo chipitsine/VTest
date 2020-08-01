@@ -111,6 +111,10 @@ vtc_gunzip(struct http *hp, char *body, long *bodylen)
 
 	assert(Z_OK == inflateInit2(&vz, 31));
 	i = inflate(&vz, Z_FINISH);
+	
+	vtc_log(hp->vl, 3, "ddddddddddddddebug   %u dddddddddddddddddddddebug %lu dddddddddddebug",
+	    l, vz.total_out);
+	
 	assert(vz.total_out < l);
 	*bodylen = vz.total_out;
 	memcpy(body, p, *bodylen);
