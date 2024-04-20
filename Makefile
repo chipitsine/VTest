@@ -20,10 +20,21 @@ DEPS=	${SRCS} \
 
 FLAGS=	-O2 -s -Wall -Werror
 
-INCS=	-Isrc \
+ifneq ($(shell uname -s),Darwin)
+ifneq ($(shell uname -m),arm64)
+
+INCS=   -Isrc \
+	-Ilib \
+	-I/opt/homebrew/include \
+	-pthread
+else
+
+INCS=   -Isrc \
 	-Ilib \
 	-I/usr/local/include \
 	-pthread
+endif
+endif
 
 LIBS=	-L/usr/local/lib \
 	-lm \
