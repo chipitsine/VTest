@@ -1,14 +1,10 @@
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+on: [ push, pull_request ]
 
 jobs:
   build:
-
     strategy:
+      fail-fast: false
       matrix:
         os: ["macos-13", "macos-14"]
 
